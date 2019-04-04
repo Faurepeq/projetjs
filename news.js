@@ -66,7 +66,6 @@ function rechercher_nouvelles(){
 			var objJSON = JSON.parse($.cookie(recherche_courante));
 			recherche_courante_news = objJSON;
 		}
-
 }
 
 
@@ -85,8 +84,6 @@ function maj_resultats(res){
 		}
 		$('#resultats').append("<p class=\"titre_result\"><a class=\"titre_news\" href=\"" +  element.url + "\" target=\"_blank\">"+element.titre+"</a><span class=\"date_news\">"+ date + "</span><span class=\"action_news\" onclick=\"" + strFunct + "\"><img src=\""+ strPNG + ".jpg\"/></span></p>");
 	});
-
-
 }
 
 
@@ -96,51 +93,43 @@ function sauver_nouvelle(e){
 	var titre = $(e.parentNode).children()[0].text;
 	var date = $(e.parentNode).children()[0].href;
 	var url = $(e.parentNode).children()[1].innerText;
-	var obj  = {   titre: titre,
-								 date: url,
-								 url : date
-						};
-
+	var obj  = {
+		titre: titre,
+		date: url,
+		url : date
+	};
 	if(indexOf(recherche_courante_news, obj) == -1){
 		recherche_courante_news.push(obj);
 	}
-	console.log(recherche_courante_news);
-
-
 	var strJSON = JSON.stringify(recherche_courante_news);
-	console.log(strJSON);
 	$.cookie(recherche_courante, strJSON, 1000);
 }
 
 
 function supprimer_nouvelle(e){
 	$(e).children();
-	console.log($(e).children());
-//création d'un élément labelattr("src", "horloge15.jpg");
+//création d'un élément
 	$(e).attr("onclick", "sauver_nouvelle(this)");
 	var titre = $(e.parentNode).children()[0].text;
 	var date = $(e.parentNode).children()[0].href;
 	var url = $(e.parentNode).children()[1].innerText;
-	var obj  = {   titre: titre,
-								 date: url,
-								 url : date
-						};
-						console.log(recherche_courante_news);
-						console.log(obj);
-						console.log(indexOf(recherche_courante_news,obj));
+	var obj  = {
+		titre: titre,
+		date: url,
+		url : date
+	};
 	if(indexOf(recherche_courante_news,obj) != -1){
 		var i = indexOf(recherche_courante_news,obj);
 		recherche_courante_news.splice(i,1);
 	}
-
 	var strJSON = JSON.stringify(recherche_courante_news);
 	$.cookie(recherche_courante, strJSON, 1000);
-
 }
+
 
 function ajax_get_request(callback,url,async){
 	var xhr = new XMLHttpRequest();
-	//création de l'objet
+	//création de l'objet xhr
 	xhr.onreadystatechange= function() {
 		if ((xhr.readyState==4) && (xhr.status == 200)) {
 			callback(xhr.responseText);
@@ -152,16 +141,7 @@ function ajax_get_request(callback,url,async){
 	xhr.send();
 }
 
+
 function init(){
 	document.getElementById("save").onclick = ajouter_recherche;
-
-	// if ($.cookie("recherches") != null){
-	// 	var obj = JSON.parse($.cookie("recherches"));
-	// 	console.log(obj);
-	// 	console.log($.cookie("recherches"));
-	// 	 obj.forEach(function(recherches.textContent){
-	// 	 	$('#recherches-stockees').append("<p class=\"titre-recherche\"><label onclick=\"selectionner_recherche(this)\">"+ recherches.textContent + "</label><img onclick=\"supprimer_recherche(this)\" src=\"croix30.jpg\" class=\"icone-croix\"/> </p>");
-	// 	 	recherches.push(recherches.textContent);
-	// 	 });
-	//}
 }
