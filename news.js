@@ -108,8 +108,7 @@ function sauver_nouvelle(e){
 
 
 function supprimer_nouvelle(e){
-	$(e).children();
-	console.log($(e).children());
+	$(e).children().attr("src", "horloge15.jpg");
 //création d'un élément labelattr("src", "horloge15.jpg");
 	$(e).attr("onclick", "sauver_nouvelle(this)");
 	var titre = $(e.parentNode).children()[0].text;
@@ -149,8 +148,6 @@ function init(){
 
 	// if ($.cookie("recherches") != null){
 	// 	var obj = JSON.parse($.cookie("recherches"));
-	// 	console.log(obj);
-	// 	console.log($.cookie("recherches"));
 	// 	 obj.forEach(function(recherches.textContent){
 	// 	 	$('#recherches-stockees').append("<p class=\"titre-recherche\"><label onclick=\"selectionner_recherche(this)\">"+ recherches.textContent + "</label><img onclick=\"supprimer_recherche(this)\" src=\"croix30.jpg\" class=\"icone-croix\"/> </p>");
 	// 	 	recherches.push(recherches.textContent);
