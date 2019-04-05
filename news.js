@@ -85,8 +85,6 @@ function maj_resultats(res){
 		}
 		$('#resultats').append("<p class=\"titre_result\"><a class=\"titre_news\" href=\"" +  element.url + "\" target=\"_blank\">"+element.titre+"</a><span class=\"date_news\">"+ date + "</span><span class=\"action_news\" onclick=\"" + strFunct + "\"><img src=\""+ strPNG + ".jpg\"/></span></p>");
 	});
-
-
 }
 
 
@@ -96,19 +94,15 @@ function sauver_nouvelle(e){
 	var titre = $(e.parentNode).children()[0].text;
 	var date = $(e.parentNode).children()[0].href;
 	var url = $(e.parentNode).children()[1].innerText;
-	var obj  = {   titre: titre,
-								 date: url,
-								 url : date
-						};
-
+	var obj  = {
+		titre: titre,
+	 	date: url,
+		url : date
+	};
 	if(indexOf(recherche_courante_news, obj) == -1){
 		recherche_courante_news.push(obj);
 	}
-	console.log(recherche_courante_news);
-
-
 	var strJSON = JSON.stringify(recherche_courante_news);
-	console.log(strJSON);
 	$.cookie(recherche_courante, strJSON, 1000);
 }
 
@@ -121,22 +115,19 @@ function supprimer_nouvelle(e){
 	var titre = $(e.parentNode).children()[0].text;
 	var date = $(e.parentNode).children()[0].href;
 	var url = $(e.parentNode).children()[1].innerText;
-	var obj  = {   titre: titre,
-								 date: url,
-								 url : date
-						};
-						console.log(recherche_courante_news);
-						console.log(obj);
-						console.log(indexOf(recherche_courante_news,obj));
+	var obj  = {
+		 titre: titre,
+		 date: url,
+		 url : date
+	};
 	if(indexOf(recherche_courante_news,obj) != -1){
 		var i = indexOf(recherche_courante_news,obj);
 		recherche_courante_news.splice(i,1);
 	}
-
 	var strJSON = JSON.stringify(recherche_courante_news);
 	$.cookie(recherche_courante, strJSON, 1000);
-
 }
+
 
 function ajax_get_request(callback,url,async){
 	var xhr = new XMLHttpRequest();
@@ -151,6 +142,7 @@ function ajax_get_request(callback,url,async){
 	// envoi de la requête HTTP
 	xhr.send();
 }
+
 
 function init(){
 	document.getElementById("save").onclick = ajouter_recherche;
