@@ -48,8 +48,8 @@ function selectionner_recherche(e){
 		if(typeof $.cookie(recherche_courante) != 'undefined' && $.cookie(recherche_courante) != ""){
 			$('#resultats').children().remove();
 			var obj_JSON = JSON.parse($.cookie(recherche_courante));
-			recherche_courante_news = objJSON;
-			objJSON.forEach(function(element){
+			recherche_courante_news = obj_JSON;
+			obj_JSON.forEach(function(element){
 				$('#resultats').append("<p class=\"titre_result\"><a class=\"titre_news\" href=\"" +  element.url + "\" target=\"_blank\">"+element.titre+"</a><span class=\"date_news\">"+ element.date + "</span><span class=\"action_news\" \"><img src=\"disk15.jpg\"/></span></p>");
 			});
 		}
